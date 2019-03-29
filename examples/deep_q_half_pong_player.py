@@ -60,7 +60,7 @@ class DeepQHalfPongPlayer(PyGamePlayer):
         self._action = tf.placeholder("float", [None, self.ACTIONS_COUNT])
         self._target = tf.placeholder("float", [None])
 
-        readout_action = tf.reduce_sum(tf.mul(self._output_layer, self._action), reduction_indices=1)
+        readout_action = tf.reduce_sum(tf.multiply(self._output_layer, self._action), reduction_indices=1)
 
         cost = tf.reduce_mean(tf.square(self._target - readout_action))
         self._train_operation = tf.train.AdamOptimizer(self.LEARN_RATE).minimize(cost)
